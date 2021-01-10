@@ -29,7 +29,7 @@
     align-items: center;
     justify-content: space-between;
     max-width: 880px;
-    margin: 0 auto;
+    margin: 0 auto 51px auto;
     color: white;
 }
 
@@ -82,6 +82,10 @@
     cursor: pointer;
 }
 
+.profile__edit-button:hover {
+    opacity: 0.6;
+}
+
 .profile__add-button {
     width: 150px;
     height: 50px;
@@ -94,6 +98,10 @@
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
+}
+
+.profile__add-button:hover {
+    opacity: 0.6;
 }
 
 .cards {
