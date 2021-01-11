@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="./pages/index.css">
     <title>Around the U.S.</title>
 </head>
 <body class="page">
@@ -15,7 +14,7 @@
         </header>
         <main class="content">
             <section class="profile">
-                <div class="profile__avatar"></div>
+                <img src="images/profileuser.jpg" alt="User avatar" class="profile__avatar">
                 <div class="profile__info">
                     <h1 class="profile__title">Jacques Cousteau</h1>
                     <button class="profile__edit-button"></button>
@@ -24,51 +23,56 @@
                 <button class="profile__add-button"></button>
             </section>
             <section class="cards">
-                <div class="card">
-                    <img src="./images/YosemiteValley-unsplash.jpg" alt="Yosemite Valley" class="card__image">
-                    <div class="card__info-container">
-                        <h2 class="card__title">Yosemite Valley</h2>
+                <ul class="card-grid">
+                    <li class="card">
+                        <img src="./images/YosemiteValley-unsplash.jpg" alt="Yosemite Valley" class="card__image">
+                        <div class="card__info-container">
+                            <h2 class="card__title">Yosemite Valley</h2>
+                            <button class="card__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img src="./images/LakeLouise-unsplash.jpg" alt="Lake Louise" class="card__image">
+                        <div class="card__info-container">
+                            <h2 class="card__title">Lake Louise</h2>
+                            <button class="card__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img src="./images/BaldMountains-unsplash.jpg" alt="Bald Mountains" class="card__image">
+                        <div class="card__info-container">
+                            <h2 class="card__title">Bald Mountains</h2>
                         <button class="card__like-button"></button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="./images/LakeLouise-unsplash.jpg" alt="Lake Louise" class="card__image">
-                    <div class="card__info-container">
-                        <h2 class="card__title">Lake Louise</h2>
-                        <button class="card__like-button"></button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="./images/BaldMountains-unsplash.jpg" alt="Bald Mountains" class="card__image">
-                    <div class="card__info-container">
-                        <h2 class="card__title">Bald Mountains</h2>
-                    <button class="card__like-button"></button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="./images/Latemar-unsplash.jpg" alt="Latermar" class="card__image">
-                    <div class="card__info-container">
-                        <h2 class="card__title">Latemar</h2>
-                        <button class="card__like-button"></button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="./images/VanoiseNatlPark-unsplash.jpg" alt="Vanoise National Park" class="card__image">
-                    <div class="card__info-container">
-                        <h2 class="card__title">Vanoise National Park</h2>
-                        <button class="card__like-button"></button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="./images/LagodiBraies-unsplash.jpg" alt="Lago di Braies" class="card__image">
-                    <div class="card__info-container">
-                        <h2 class="card__title">Lago di Braies</h2>
-                        <button class="card__like-button"></button>
-                    </div>
-                </div>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img src="./images/Latemar-unsplash.jpg" alt="Latermar" class="card__image">
+                        <div class="card__info-container">
+                            <h2 class="card__title">Latemar</h2>
+                            <button class="card__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img src="./images/VanoiseNatlPark-unsplash.jpg" alt="Vanoise National Park" class="card__image">
+                        <div class="card__info-container">
+                            <h2 class="card__title">Vanoise National Park</h2>
+                            <button class="card__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img src="./images/LagodiBraies-unsplash.jpg" alt="Lago di Braies" class="card__image">
+                        <div class="card__info-container">
+                            <h2 class="card__title">Lago di Braies</h2>
+                            <button class="card__like-button"></button>
+                        </div>
+                    </li>
+                </ul>
             </section>
-
         </main>
+        <footer class="footer">
+            <p class="footer__copyright">© 2020 Around The U.S.</p>
+        </footer>
     </div>
+<script src="script.js"></script>
 </body>
 </html>
