@@ -9,25 +9,18 @@
     background-position: center;
     cursor: pointer;
     position: absolute;
-    top: 216px;
-    right: 460px;
+    top: -46px;
+    right: -46px;
 }
 
 .modal__button:hover {
     opacity: 0.6;
 }
 
-@media screen and (max-width: 1140px) {
-    .modal__button {
-        top: 156px;
-        right: 312px;
-    }
-}
-
 @media screen and (max-width: 958px) {
     .modal__button {
-        top: 136px;
-        right: 256px;
+        top: -56px;
+        right: -6px;
     }
 }
 
@@ -35,7 +28,7 @@
     .modal__button {
         width: 26px;
         height: 26px;
-        top: 160px;
-        right: 65px;
+        top: -36px;
+        right: -6px;
     }
 }
