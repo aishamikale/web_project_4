@@ -1,0 +1,41 @@
+.modal__button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-image: url(../../../images/Close\ Icon.svg);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    cursor: pointer;
+    position: absolute;
+    top: 216px;
+    right: 460px;
+}
+
+.modal__button:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 1140px) {
+    .modal__button {
+        top: 156px;
+        right: 312px;
+    }
+}
+
+@media screen and (max-width: 958px) {
+    .modal__button {
+        top: 136px;
+        right: 256px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .modal__button {
+        width: 26px;
+        height: 26px;
+        top: 160px;
+        right: 65px;
+    }
+}

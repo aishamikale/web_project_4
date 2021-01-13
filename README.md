@@ -1,16 +1,14 @@
 # Project 4: Around The U.S.
+Around The U.S. is a website for explorers, travelers, backpackers and all those who love adventure to upload and track their trips around the United States.
 
-### Overview
+## Prerequisites
+Make sure you meet the following set of requirments:
 
-* Figma
-* Images
+* You have the latest version of Visual Studio Code downloaded or other text editor such as Atom.
+* You are using a Mac or Windows machine.
+* You have a basic understanding of HTML, CSS, and JavaScript.
 
-**Figma**
+## Access
+To access this project:
 
-* [Link to the project in Figma](https://www.figma.com/file/mUgu8OSHWE0M6p6vfwmdu9/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
-
-**Images**
-
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-
-Have fun with JavaScript!
+* https://aishamikale.github.io/web_project_4/index.html
