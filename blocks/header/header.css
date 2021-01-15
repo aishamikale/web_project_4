@@ -3,6 +3,7 @@
 .header {
     max-width: 880px;
     margin: 0 auto 62px auto;
+    border-bottom: 1px solid #545454;
 }
 
 @media screen and (max-width: 958px) {

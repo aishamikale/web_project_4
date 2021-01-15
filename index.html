@@ -10,60 +10,59 @@
         <div class="page__container">
             <header class="header">
                 <img src="images/headerlogo.svg" alt="Around the U.S." class="logo" />
-                <div class="header__line"></div>
             </header>
             <main class="content">
                 <section class="profile">
                     <img src="images/profileuser.jpg" alt="User avatar" class="profile__avatar" />
                     <div class="profile__info">
                         <h1 class="profile__title">Jacques Cousteau</h1>
-                        <button class="profile__edit-button"></button>
+                        <button class="profile__edit-button" type="button" aria-label="edit"></button>
                         <p class="profile__subtitle">Explorer</p>
                     </div>
-                    <button class="profile__add-button"></button>
+                    <button class="profile__add-button" type="button" aria-label="add"></button>
                 </section>
                 <section class="cards">
-                    <ul class="card-grid">
+                    <ul class="cards__grid">
                         <li class="card">
-                            <img src="./images/YosemiteValley-unsplash.jpg" alt="Yosemite Valley" class="card__image" />
+                            <img src="./images/yosemitevalley.jpg" alt="Yosemite Valley" class="card__image" />
                             <div class="card__info-container">
                                 <h2 class="card__title">Yosemite Valley</h2>
-                                <button class="card__like-button"></button>
+                                <button class="card__like-button" type="button" aria-label="like photo"></button>
                             </div>
                         </li>
                         <li class="card">
-                            <img src="./images/LakeLouise-unsplash.jpg" alt="Lake Louise" class="card__image" />
+                            <img src="./images/lakelouise.jpg" alt="Lake Louise" class="card__image" />
                             <div class="card__info-container">
                                 <h2 class="card__title">Lake Louise</h2>
-                                <button class="card__like-button"></button>
+                                <button class="card__like-button" type="button" aria-label="like photo"></button>
                             </div>
                         </li>
                         <li class="card">
-                            <img src="./images/BaldMountains-unsplash.jpg" alt="Bald Mountains" class="card__image" />
+                            <img src="./images/baldmountains.jpg" alt="Bald Mountains" class="card__image" />
                             <div class="card__info-container">
                                 <h2 class="card__title">Bald Mountains</h2>
-                                <button class="card__like-button"></button>
+                                <button class="card__like-button" type="button" aria-label="like photo"></button>
                             </div>
                         </li>
                         <li class="card">
-                            <img src="./images/Latemar-unsplash.jpg" alt="Latermar" class="card__image" />
+                            <img src="./images/latemar.jpg" alt="Latermar" class="card__image" />
                             <div class="card__info-container">
                                 <h2 class="card__title">Latemar</h2>
-                                <button class="card__like-button"></button>
+                                <button class="card__like-button" type="button" aria-label="like photo"></button>
                             </div>
                         </li>
                         <li class="card">
-                            <img src="./images/VanoiseNatlPark-unsplash.jpg" alt="Vanoise National Park" class="card__image" />
+                            <img src="./images/vanoisenatlpark.jpg" alt="Vanoise National Park" class="card__image" />
                             <div class="card__info-container">
                                 <h2 class="card__title">Vanoise National Park</h2>
-                                <button class="card__like-button"></button>
+                                <button class="card__like-button" type="button" aria-label="like photo"></button>
                             </div>
                         </li>
                         <li class="card">
-                            <img src="./images/LagodiBraies-unsplash.jpg" alt="Lago di Braies" class="card__image" />
+                            <img src="./images/lagodibraies.jpg" alt="Lago di Braies" class="card__image" />
                             <div class="card__info-container">
                                 <h2 class="card__title">Lago di Braies</h2>
-                                <button class="card__like-button"></button>
+                                <button class="card__like-button" type="button" aria-label="like photo"></button>
                             </div>
                         </li>
                     </ul>
@@ -73,17 +72,17 @@
                 <p class="footer__copyright">© 2020 Around The U.S.</p>
             </footer>
         </div>
-        <section class="modal">
+        <div class="modal">
             <div class="modal__container">
-                <form action="#" class="form">
+                <form action="#" class="form" name="profileForm">
                     <h2 class="form__heading">Edit profile</h2>
-                    <input type="text" class="form__input form__input_type_name" value="Jacques Cousteau" />
-                    <input type="text" class="form__input form__input_type_title" value="Explorer" />
+                    <input type="text" class="form__input form__input_type_name" value="Jacques Cousteau" name="name"/>
+                    <input type="text" class="form__input form__input_type_title" value="Explorer" name="title"/>
                     <button class="form__button" type="submit">Save</button>
                 </form>
-                <button class="modal__button"></button>
+                <button class="modal__button" type="button" aria-label="close popup"></button>
             </div>
-        </section>
-        <script src="./script.js"></script>
+        </div>
+        <script src="scripts/script.js"></script>
     </body>
 </html>

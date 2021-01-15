@@ -1,12 +1,13 @@
 .profile__edit-button {
     width: 24px;
     height: 24px;
+    justify-content: start;
     border: 1px solid #fff;
     box-sizing: border-box;
     margin: 0 0 0 12px;
     padding: 0;
     background-color: transparent;
-    background-image: url(../../../images/Vector.svg);
+    background-image: url(../../../images/editpen.svg);
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
@@ -20,6 +21,6 @@
     .profile__edit-button {
         width: 18px;
         height: 18px;
-        margin: 0 0 0 10px;
+        /*margin: 0 0 0 10px;*/
     }
 }

@@ -1,4 +1,7 @@
 .form__input {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     margin: 0 auto;
     width: 358px;
     padding: 13.26px 0 13.26px 0;
