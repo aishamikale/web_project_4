@@ -9,16 +9,20 @@
     font-weight: normal;
     font-size: 18px;
     line-height: 22px;
+    color: white;
 }
 
 @media screen and (max-width: 958px) {
     .profile__subtitle {
+        margin: 0 0 12px 0;
     }
 }
 
 @media screen and (max-width: 425px) {
     .profile__subtitle {
+        text-align: center;
         font-size: 14px;
         line-height: 17px;
+        margin: 0;
     }
 }

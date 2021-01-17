@@ -15,9 +15,9 @@
                 <section class="profile">
                     <img src="images/profileuser.jpg" alt="User avatar" class="profile__avatar" />
                     <div class="profile__info">
-                        <h1 class="profile__title">Jacques Cousteau</h1>
-                        <button class="profile__edit-button" type="button" aria-label="edit"></button>
-                        <p class="profile__subtitle">Explorer</p>
+                            <h1 class="profile__title">Jacques Cousteau</h1>
+                            <button class="profile__edit-button" type="button" aria-label="edit"></button>
+                            <p class="profile__subtitle">Explorer</p>
                     </div>
                     <button class="profile__add-button" type="button" aria-label="add"></button>
                 </section>
@@ -76,8 +76,8 @@
             <div class="modal__container">
                 <form action="#" class="form" name="profileForm">
                     <h2 class="form__heading">Edit profile</h2>
-                    <input type="text" class="form__input form__input_type_name" value="Jacques Cousteau" name="name"/>
-                    <input type="text" class="form__input form__input_type_title" value="Explorer" name="title"/>
+                    <input type="text" class="form__input form__input_type_name" value="Jacques Cousteau" name="name" required placeholder="value"/>
+                    <input type="text" class="form__input form__input_type_title" value="Explorer" name="title" required placeholder="value"/>
                     <button class="form__button" type="submit">Save</button>
                 </form>
                 <button class="modal__button" type="button" aria-label="close popup"></button>

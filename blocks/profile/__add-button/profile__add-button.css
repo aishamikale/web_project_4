@@ -1,5 +1,4 @@
 .profile__add-button {
-    align-self: center;
     width: 150px;
     height: 50px;
     border: 2px solid #fff;
@@ -18,7 +17,7 @@
 
 @media screen and (max-width: 958px) {
     .profile__add-button {
-        margin-left: auto;
+  
     }
 }
 

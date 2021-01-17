@@ -3,23 +3,25 @@
     display: grid;
     grid-template-columns: 373px 1fr;
     grid-template-rows: auto;
-    align-items: center;
-    grid-column-gap: 18px;
     grid-row-gap: 16px;
+    grid-column-gap: 18px;
 }
 
 @media screen and (max-width: 958px) {
     .profile__info {
-        margin-left: auto;
-        grid-template-columns: 273px 1fr;
+        display: flex;
+        flex-direction: column;
     }
 }
 
 @media screen and (max-width: 425px) {
     .profile__info {
-        display: flex;
-        flex-direction: column;
+        display: grid;
         max-width: 282px;
+        grid-template-columns: 196px 1fr;
+        grid-template-rows: auto;
+        grid-row-gap: 14px;
+        grid-column-gap: 10px;
         margin: 0 auto;
     }
 }
