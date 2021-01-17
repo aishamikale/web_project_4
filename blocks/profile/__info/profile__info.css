@@ -1,4 +1,5 @@
 .profile__info {
+    margin-left: 32px;
     max-width: 415px;
     display: grid;
     grid-template-columns: 373px 1fr;
@@ -11,6 +12,7 @@
     .profile__info {
         display: flex;
         flex-direction: column;
+        margin-left: 0;
     }
 }
 

@@ -5,7 +5,7 @@
     background-image: url(../../../images/close-icon.svg);
     background-color: transparent;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: auto;
     background-position: center;
     cursor: pointer;
     position: absolute;
