@@ -23,48 +23,6 @@
                 </section>
                 <section class="cards">
                     <ul class="cards__grid">
-                        <li class="card">
-                            <img src="./images/yosemitevalley.jpg" alt="Yosemite Valley" class="card__image" />
-                            <div class="card__info-container">
-                                <h2 class="card__title">Yosemite Valley</h2>
-                                <button class="card__like-button" type="button" aria-label="like photo"></button>
-                            </div>
-                        </li>
-                        <li class="card">
-                            <img src="./images/lakelouise.jpg" alt="Lake Louise" class="card__image" />
-                            <div class="card__info-container">
-                                <h2 class="card__title">Lake Louise</h2>
-                                <button class="card__like-button" type="button" aria-label="like photo"></button>
-                            </div>
-                        </li>
-                        <li class="card">
-                            <img src="./images/baldmountains.jpg" alt="Bald Mountains" class="card__image" />
-                            <div class="card__info-container">
-                                <h2 class="card__title">Bald Mountains</h2>
-                                <button class="card__like-button" type="button" aria-label="like photo"></button>
-                            </div>
-                        </li>
-                        <li class="card">
-                            <img src="./images/latemar.jpg" alt="Latermar" class="card__image" />
-                            <div class="card__info-container">
-                                <h2 class="card__title">Latemar</h2>
-                                <button class="card__like-button" type="button" aria-label="like photo"></button>
-                            </div>
-                        </li>
-                        <li class="card">
-                            <img src="./images/vanoisenatlpark.jpg" alt="Vanoise National Park" class="card__image" />
-                            <div class="card__info-container">
-                                <h2 class="card__title">Vanoise National Park</h2>
-                                <button class="card__like-button" type="button" aria-label="like photo"></button>
-                            </div>
-                        </li>
-                        <li class="card">
-                            <img src="./images/lagodibraies.jpg" alt="Lago di Braies" class="card__image" />
-                            <div class="card__info-container">
-                                <h2 class="card__title">Lago di Braies</h2>
-                                <button class="card__like-button" type="button" aria-label="like photo"></button>
-                            </div>
-                        </li>
                     </ul>
                 </section>
             </main>
@@ -83,6 +41,16 @@
                 <button class="modal__button" type="button" aria-label="close popup"></button>
             </div>
         </div>
+        <template class="card-template">
+            <li class="card">
+                <div class="card__image" style=""></div>
+                <div class="card__info-container">
+                    <h2 class="card__title"></h2>
+                    <button class="card__like-button" type="button" aria-label="like photo"></button>
+                    <button class="card__delete-button" type="button" aria-label="delete photo"></button>
+                </div>
+            </li>
+        </template>
         <script src="scripts/script.js"></script>
     </body>
 </html>
