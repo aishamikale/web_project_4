@@ -69,6 +69,7 @@ const initialCards = [
     const cardDeleteButton = cardElement.querySelector(".card__delete-button");
     
     cardTitle.textContent = data.name;
+    //cardImage.src = data.link;
     cardImage.style.backgroundImage = `url(${data.link})`;
 
     grid.prepend(cardElement);
