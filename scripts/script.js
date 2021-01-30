@@ -1,12 +1,24 @@
-const editButton = document.querySelector('.profile__edit-button');
+//modals
 const modal = document.querySelector('.modal');
-const closeButton = document.querySelector('.modal__button');
 const form = document.querySelector('.form');
-let nameInput = document.querySelector('.form__input_type_name');
-let titleInput = document.querySelector('.form__input_type_title');
+const cardModal = document.querySelector('.modal_type_add-card')
+
+//buttons
+const editButton = document.querySelector('.profile__edit-button');
+const closeButton = document.querySelector('.modal__button');
+const addButton = document.querySelector('.profile__add-button');
+const closeCardModalButton = cardModal.querySelector('.modal__button');
+
+//profile section
 let profileName = document.querySelector('.profile__title');
 let profileTitle = document.querySelector('.profile__subtitle');
 
+//form inputs
+let nameInput = document.querySelector('.form__input_type_name');
+let titleInput = document.querySelector('.form__input_type_title');
+
+
+//edit profile modal
 function openModal() {
     modal.classList.add('modal_open');
     nameInput.value = profileName.textContent;
@@ -21,6 +33,19 @@ function closeModal() {
 
 closeButton.addEventListener('click', closeModal);
 
+//add card modal
+function openCardModal() {
+    cardModal.classList.add('modal_open');
+}
+
+addButton.addEventListener('click', openCardModal);
+
+function closeCardModal() {
+    cardModal.classList.remove('modal_open');
+}
+
+closeCardModalButton.addEventListener('click', closeCardModal);
+
 //form inputs
 function submitForm(event) {
     event.preventDefault();
@@ -31,6 +56,7 @@ function submitForm(event) {
 
 form.addEventListener('submit', submitForm);
 
+//initial cards
 const initialCards = [
     {
       name: "Yosemite Valley",
@@ -69,10 +95,11 @@ const initialCards = [
     const cardDeleteButton = cardElement.querySelector(".card__delete-button");
     
     cardTitle.textContent = data.name;
-    //cardImage.src = data.link;
     cardImage.style.backgroundImage = `url(${data.link})`;
 
     grid.prepend(cardElement);
   });
 
-  
+  function addCard (titleValue, linkValue) {
+      
+  }

@@ -30,20 +30,30 @@
                 <p class="footer__copyright">© 2020 Around The U.S.</p>
             </footer>
         </div>
-        <div class="modal">
+        <div class="modal modal_type_edit-profile">
             <div class="modal__container">
                 <form action="#" class="form" name="profileForm">
                     <h2 class="form__heading">Edit profile</h2>
-                    <input type="text" class="form__input form__input_type_name" value="Jacques Cousteau" name="name" required placeholder="value"/>
-                    <input type="text" class="form__input form__input_type_title" value="Explorer" name="title" required placeholder="value"/>
+                    <input type="text" class="form__input form__input_type_name" name="name" placeholder="Name" required/>
+                    <input type="text" class="form__input form__input_type_title" name="title" placeholder="Description" required/>
                     <button class="form__button" type="submit">Save</button>
+                </form>
+                <button class="modal__button" type="button" aria-label="close popup"></button>
+            </div>
+        </div>
+        <div class="modal modal_type_add-card">
+            <div class="modal__container">
+                <form action="#" class="form" name="profileForm">
+                    <h2 class="form__heading">New place</h2>
+                    <input type="text" class="form__input form__input_type_card-title" name="name" placeholder="Title" required/>
+                    <input type="url" class="form__input form__input_type_url" name="title" placeholder="Image link" required/>
+                    <button class="form__button" type="submit">Create</button>
                 </form>
                 <button class="modal__button" type="button" aria-label="close popup"></button>
             </div>
         </div>
         <template class="card-template">
             <li class="card">
-                <!--<img src="" alt="" class="card__image">-->
                 <div class="card__image" style=""></div>
                 <div class="card__info-container">
                     <h2 class="card__title"></h2>
