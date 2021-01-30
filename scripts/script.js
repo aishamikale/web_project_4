@@ -19,6 +19,10 @@ let nameInput = document.querySelector('.form__input_type_name');
 let titleInput = document.querySelector('.form__input_type_title');
 let cardTitleInput = document.querySelector('.form__input_type_card-title');
 let cardUrlInput = document.querySelector('.form__input_type_url');
+const data = [{
+    name: '',
+    link: ''
+},];
 
 
 //edit profile modal
@@ -90,7 +94,7 @@ const initialCards = [
   const cardTemplate = document.querySelector(".card-template").content.querySelector(".card");
   const grid = document.querySelector(".cards__grid");
 
-  initialCards.forEach(function (data){
+  function createCardElement() {
     const cardElement = cardTemplate.cloneNode(true);
     const cardImage = cardElement.querySelector(".card__image");
     const cardTitle = cardElement.querySelector(".card__title");
@@ -100,14 +104,20 @@ const initialCards = [
     cardTitle.textContent = data.name;
     cardImage.style.backgroundImage = `url(${data.link})`;
 
-    grid.prepend(cardElement);
+    return cardElement;
+  }
 
-    function submitCardForm(event) {
-        event.preventDefault();
-        cardTitle.textContent = cardTitleInput.value;
-        cardImage.src = cardUrlInput.value;
-        cardModal.classList.remove('modal_open');
-    }
-    
-    addCardForm.addEventListener('submit', submitCardForm);
+  initialCards.forEach(function (data){
+    const cardElement = createCardElement();
+    grid.prepend(cardElement);
   });
+
+  function addCard(event) {
+    createCardElement();
+    event.preventDefault();
+    cardTitle.textContent = cardTitleInput.value;
+    cardImage.src = cardUrlInput.value;
+    cardModal.classList.remove('modal_open');
+}
+
+addCardForm.addEventListener('submit', addCard);
