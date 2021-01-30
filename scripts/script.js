@@ -99,7 +99,3 @@ const initialCards = [
 
     grid.prepend(cardElement);
   });
-
-  function addCard (titleValue, linkValue) {
-      
-  }
