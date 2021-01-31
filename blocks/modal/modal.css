@@ -1,5 +1,9 @@
 @import url(./__button/modal__button.css);
 @import url(./__container/modal__container.css);
+@import url(./__image/modal__image.css);
+@import url(./__image-title/modal__image-title.css);
+@import url(./__image-container/modal__image-container.css);
+@import url(./__image-button/modal__image-button.css);
 
 .modal {
     display: none;
