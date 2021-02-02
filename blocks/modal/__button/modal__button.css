@@ -19,6 +19,8 @@
 
 @media screen and (max-width: 958px) {
     .modal__button {
+        width: 36px;
+        height: 36px;
         top: -56px;
         right: -6px;
     }
