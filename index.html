@@ -32,10 +32,14 @@
         </div>
         <div class="modal modal_type_edit-profile">
             <div class="modal__container">
-                <form action="#" class="form form_type_edit-profile" name="profileForm">
+                <form action="#" class="form form_type_edit-profile" name="profileForm" novalidate>
                     <h2 class="form__heading">Edit profile</h2>
-                    <input type="text" class="form__input form__input_type_name" name="name" placeholder="Name" required/>
-                    <input type="text" class="form__input form__input_type_title" name="title" placeholder="Description" required/>
+                    <input id="profile-name" type="text" class="form__input form__input_type_name" name="name" placeholder="Name" minlength="4" maxlength="40" required/>
+                    <span id="profile-name-error" class="modal__error"></span>
+
+                    <input id="profile-title" type="text" class="form__input form__input_type_title" name="title" placeholder="Description" minlength="2" maxlength="200" required/>
+                    <span id="profile-title-error" class="modal__error"></span>
+
                     <button class="form__button" type="submit">Save</button>
                 </form>
                 <button class="modal__button" type="button" aria-label="close popup"></button>
@@ -43,10 +47,14 @@
         </div>
         <div class="modal modal_type_add-card">
             <div class="modal__container">
-                <form action="#" class="form form_type_add-card" name="cardForm">
+                <form action="#" class="form form_type_add-card" name="cardForm" novalidate>
                     <h2 class="form__heading">New place</h2>
-                    <input type="text" class="form__input form__input_type_card-title" name="name" placeholder="Title" required/>
-                    <input type="url" class="form__input form__input_type_url" name="title" placeholder="Image link" required/>
+                    <input id="card-title" type="text" class="form__input form__input_type_card-title" name="place" placeholder="Title" minlength="1" maxlength="30" required/>
+                    <span id="card-title-error" class="modal__error"></span>
+
+                    <input id="card-url" type="url" class="form__input form__input_type_url" name="website" placeholder="Image link" required/>
+                    <span id="card-url-error" class="modal__error"></span> 
+
                     <button class="form__button" type="submit">Create</button>
                 </form>
                 <button class="modal__button" type="button" aria-label="close popup"></button>
@@ -74,5 +82,6 @@
             </li>
         </template>
         <script src="scripts/script.js"></script>
+        <script src="scripts/validate.js"></script>
     </body>
 </html>
