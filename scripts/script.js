@@ -1,4 +1,4 @@
-//wrappers
+//wrappers &overlays
 const editProfileModal = document.querySelector('.modal_type_edit-profile');
 const cardModal = document.querySelector('.modal_type_add-card');
 const imageModal = document.querySelector('.modal_type_image');
@@ -29,6 +29,7 @@ const cardUrlInput = document.querySelector('.form__input_type_url');
 
 const modalImage = imageModal.querySelector('.modal__image');
 const modalImageTitle = imageModal.querySelector('.modal__image-title');
+
 
 //edit profile modal
 function toggleModalWindow(modal) {
@@ -66,6 +67,36 @@ closeImageModalButton.addEventListener('click', () => {
 
 editProfileForm.addEventListener('submit', submitEditProfileForm);
 
+function escModal(modalClose) {
+  modalClose.classList.remove("modal_open");
+}
+
+document.addEventListener('keyup', (evt) => {
+  if (evt.key === 'Escape') {
+    escModal(imageModal);
+    escModal(editProfileModal);
+    escModal(cardModal);
+  }
+});
+
+editProfileModal.addEventListener('click', (evt) => {
+  if(evt.target === editProfileModal) {
+    escModal(editProfileModal);
+  }
+});
+
+cardModal.addEventListener('click', (evt) => {
+  if(evt.target === cardModal) {
+    escModal(cardModal);
+  }
+});
+
+imageModal.addEventListener('click', (evt) => {
+  if(evt.target === imageModal) {
+    escModal(imageModal);
+  }
+});
+ 
 //initial cards
 const initialCards = [
     {

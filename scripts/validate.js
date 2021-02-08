@@ -1,4 +1,4 @@
-const showErrorMessage = function (input, form, {errorClass, inputError, ...rest}) {
+const showErrorMessage = function (input, form, {errorClass, inputErrorClass, ...rest}) {
     const error = document.querySelector("#" + input.id + "-error");
 
     error.textContent = input.validationMessage;
