@@ -35,15 +35,24 @@ const modalImageTitle = imageModal.querySelector('.modal__image-title');
 
 
 //edit profile modal
+//(modal.classList.contains("modal_open"))
+
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    toggleModalWindow(openedPopup);
+  }
+}
 
 function toggleModalWindow(modal) {
   modal.classList.toggle("modal_open");
-  if (modal.classList.contains("modal_open")) {
+  if (evt.target.classList.contains('modal_open') || evt.target.classList.contains('modal__button')) {
     document.addEventListener("keydown", closeByEscape);
   } else {
     document.removeEventListener("keydown", closeByEscape);
   }
 }
+
+
 /*function toggleModalWindow(modal) {
   modal.classList.toggle('modal_open');
 }*/
@@ -61,33 +70,28 @@ editButton.addEventListener('click', () => {
   toggleModalWindow(editProfileModal);
 });
 
-closeButton.addEventListener('click', () => {
+/*closeButton.addEventListener('click', () => {
   toggleModalWindow(editProfileModal);
-});
+});*/
 
 addButton.addEventListener('click', () => {
   toggleModalWindow(cardModal);
 });
 
-closeCardModalButton.addEventListener('click', () => {
+/*closeCardModalButton.addEventListener('click', () => {
   toggleModalWindow(cardModal);
 });
 
 closeImageModalButton.addEventListener('click', () => {
   toggleModalWindow(imageModal);
-});
+});*/
 
 editProfileForm.addEventListener('submit', submitEditProfileForm);
 
-function escModal(modalClose) {
+/*function escModal(modalClose) {
   modalClose.classList.remove("modal_open");
-}
+}*/
 
-function closeByEscape(evt) {
-  if (evt.key === 'Escape') {
-    toggleModalWindow(openedPopup);
-  }
-}
  
 /*document.addEventListener('keyup', (evt) => {
   if (evt.key === 'Escape') {
@@ -100,10 +104,10 @@ function closeByEscape(evt) {
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
       if (evt.target.classList.contains('modal_open')) {
-        toggleModalWindow(popup)
+        toggleModalWindow(popup);
       }
       if (evt.target.classList.contains('modal__button')) {
-        toggleModalWindow(popup)
+        toggleModalWindow(popup);
       }
   })
 })
