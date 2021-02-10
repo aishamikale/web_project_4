@@ -32,9 +32,22 @@ const modalImage = imageModal.querySelector('.modal__image');
 const modalImageTitle = imageModal.querySelector('.modal__image-title');
 
 
-//edit profile modal
+//open close modal
+
+function escModal(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.modal_open')
+    toggleModalWindow(openedPopup);
+  }
+} 
+
 function toggleModalWindow(modal) {
   modal.classList.toggle('modal_open');
+  if (modal.classList.contains('modal_open')) {
+    document.addEventListener('keydown', escModal);
+  } else {
+    document.removeEventListener('keydown', escModal);
+  }
 }
 
 function submitEditProfileForm(event) {
@@ -67,19 +80,6 @@ closeImageModalButton.addEventListener('click', () => {
 });
 
 editProfileForm.addEventListener('submit', submitEditProfileForm);
-
-function escModal(modalClose) {
-  modalClose.classList.remove("modal_open");
-}
-
- 
-document.addEventListener('keyup', (evt) => {
-  if (evt.key === 'Escape') {
-    escModal(imageModal);
-    escModal(editProfileModal);
-    escModal(cardModal);
-  }
-});
 
 editProfileModal.addEventListener('click', (evt) => {
   if(evt.target === editProfileModal) {
