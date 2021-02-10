@@ -36,7 +36,7 @@ const modalImageTitle = imageModal.querySelector('.modal__image-title');
 
 function escModal(evt) {
   if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.modal_open')
+    const openedPopup = document.querySelector('.modal_open');
     toggleModalWindow(openedPopup);
   }
 } 

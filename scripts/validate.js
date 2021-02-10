@@ -27,8 +27,10 @@ const toggleButtonState = function (inputs, button, {inactiveButtonClass, ...res
     const isValid = inputs.every((input) => input.validity.valid);
     if(isValid) {
         button.classList.remove(inactiveButtonClass);
+        button.disabled = false;
     } else {
         button.classList.add(inactiveButtonClass);
+        button.disabled = true;
     }
 }
 
