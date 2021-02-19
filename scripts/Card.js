@@ -1,22 +1,7 @@
-const imageModal = document.querySelector(".modal_type_image");
+import { imageModal, toggleModalWindow } from "./utils.js";
+
 const modalImage = imageModal.querySelector(".modal__image");
 const modalImageTitle = imageModal.querySelector(".modal__image-title");
-
-function toggleModalWindow(modal) {
-    modal.classList.toggle("modal_open");
-    if (modal.classList.contains("modal_open")) {
-      document.addEventListener("keydown", escModal);
-    } else {
-      document.removeEventListener("keydown", escModal);
-    }
-  }
-
-  function escModal(evt) {
-    if (evt.key === "Escape") {
-      const openedPopup = document.querySelector(".modal_open");
-      toggleModalWindow(openedPopup);
-    }
-  }
 
 class Card {
     constructor (data, templateSelector) {
@@ -24,7 +9,6 @@ class Card {
         this._name = data.name;
         this._templateSelector = templateSelector;
     }
-
     _cardImagePopup() {
         modalImage.src = this._link;
         modalImageTitle.textContent = this._name;
@@ -32,8 +16,9 @@ class Card {
         toggleModalWindow(imageModal);
     }
 
-    _likeButton(evt) {
-        evt.target.classList.toggle("card__like_button_active");
+    _likeButton() {
+      const cardLikeButton = this._cardElement.querySelector(".card__like-button");
+      cardLikeButton.classList.toggle("card__like_button_active");
     }
 
     _deleteButton() {
@@ -45,9 +30,9 @@ class Card {
         const cardDeleteButton = this._cardElement.querySelector(".card__delete-button");
         const cardImage = this._cardElement.querySelector(".card__image");
 
-        cardDeleteButton.addEventListener("click", this._deleteButton);
-        cardLikeButton.addEventListener("click", this._likeButton);
-        cardImage.addEventListener("click", this._cardImagePopup);
+        cardDeleteButton.addEventListener("click", () => this._deleteButton());
+        cardLikeButton.addEventListener("click", () => this._likeButton());
+        cardImage.addEventListener("click", () => this._cardImagePopup());
     }
 
     _getTemplate() {
