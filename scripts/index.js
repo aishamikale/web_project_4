@@ -1,4 +1,4 @@
-import { imageModal, escModal, toggleModalWindow } from "./utils.js";
+import { imageModal, toggleModalWindow } from "./utils.js";
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import initialCards from "./array.js";
@@ -53,9 +53,16 @@ function submitEditProfileForm(event) {
   toggleModalWindow(editProfileModal);
 }
 
+function submitAddCardForm(event) {
+  event.preventDefault();
+  addCard({name: cardTitleInput.value, link: cardUrlInput.value});
+  toggleModalWindow(cardModal);
+}
+
 editButton.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
   titleInput.value = profileTitle.textContent;
+  editProfileValidator.resetValidation();
   toggleModalWindow(editProfileModal);
 });
 
@@ -64,17 +71,10 @@ initialCards.forEach(data => {
   grid.append(card.generateCard());
 });
 
-function addCard(event) {
-  event.preventDefault();
-
-  const addCardInfo = {
-    name: cardTitleInput.value,
-    link: cardUrlInput.value
-  };
-
-  const newCard = new Card(addCardInfo, ".card-template");
-  grid.prepend(newCard.generateCard());
-  toggleModalWindow(cardModal);
+function addCard(cardData) {
+  const card = new Card(cardData, ".card-template");
+  grid.prepend(card.generateCard());
+  addCardForm.reset();
 }
 
 closeButton.addEventListener("click", () => {
@@ -82,6 +82,7 @@ closeButton.addEventListener("click", () => {
 });
 
 addButton.addEventListener("click", () => {
+  addCardValidator.resetValidation();
   toggleModalWindow(cardModal);
 });
 
@@ -94,22 +95,22 @@ closeImageModalButton.addEventListener("click", () => {
 });
 
 editProfileForm.addEventListener("submit", submitEditProfileForm);
-addCardForm.addEventListener("submit", addCard);
+addCardForm.addEventListener("submit", submitAddCardForm);
 
 editProfileModal.addEventListener("click", (evt) => {
   if(evt.target === editProfileModal) {
-    escModal(editProfileModal);
+    toggleModalWindow(editProfileModal);
   }
 });
 
 cardModal.addEventListener("click", (evt) => {
   if(evt.target === cardModal) {
-    escModal(cardModal);
+    toggleModalWindow(cardModal);
   }
 });
 
 imageModal.addEventListener("click", (evt) => {
   if(evt.target === imageModal) {
-    escModal(imageModal);
+    toggleModalWindow(imageModal);
   }
 });
