@@ -1,19 +1,24 @@
-import { imageModal, toggleModalWindow } from "./utils.js";
+import { imageModal, toggleModalWindow } from "../utils.js";
 
 const modalImage = imageModal.querySelector(".modal__image");
 const modalImageTitle = imageModal.querySelector(".modal__image-title");
 
 class Card {
-    constructor (data, templateSelector) {
+    constructor (data, templateSelector, handleCardClick) {
         this._link = data.link;
         this._name = data.name;
         this._templateSelector = templateSelector;
+        this._handleCardClick = handleCardClick;
     }
     _cardImagePopup() {
         modalImage.src = this._link;
         modalImageTitle.textContent = this._name;
         modalImage.alt = this._name;
         toggleModalWindow(imageModal);
+
+        modalImage.addEventListener("click", () => {
+            this._handleCardClick();
+        });
     }
 
     _likeButton() {
@@ -53,7 +58,14 @@ class Card {
         this._setEventListeners();
         return this._cardElement;
     }
-
 }
 
 export default Card;
+
+/*    _cardImagePopup() {
+        modalImage.src = this._link;
+        modalImageTitle.textContent = this._name;
+        modalImage.alt = this._name;
+        toggleModalWindow(imageModal);
+    }
+*/

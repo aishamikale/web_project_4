@@ -1,6 +1,11 @@
-import { imageModal, toggleModalWindow } from "./utils.js";
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
+import { imageModal, toggleModalWindow, settings } from "./utils.js";
+import Card from "./components/Card.js";
+import FormValidator from "./components/FormValidator.js";
+import Popup from "./components/Popup.js";
+import PopupWithImage from "./components/PopupWithImage.js";
+import PopupWithForm from "./components/PopupWithForm.js";
+import Section from "./components/Section.js";
+import userInfo from "./components/UserInfo.js";
 import initialCards from "./array.js";
 
 //wrappers &overlays
@@ -32,19 +37,41 @@ const cardTitleInput = document.querySelector(".form__input_type_card-title");
 const cardUrlInput = document.querySelector(".form__input_type_url");
 
 
-const settings = {
-  formSelector: ".form",
-  inputSelector: ".form__input",
-  submitButtonSelector: ".form__button",
-  inactiveButtonClass: "form__button_disabled",
-  inputErrorClass: "form__input_type_error",
-  errorClass: "form__error_visible"
-}
-
 const editProfileValidator = new FormValidator(settings, document.querySelector(".form_type_edit-profile"));
 const addCardValidator = new FormValidator(settings, document.querySelector(".form_type_add-card"));
 editProfileValidator.enableValidation();
 addCardValidator.enableValidation();
+
+const editPopup = new PopupWithForm(".modal_type_edit-profile");
+editPopup.setEventListeners();
+
+const addPopup = new PopupWithForm(".modal_type_add-card");
+addPopup.setEventListeners();
+
+const imagePopup = new PopupWithImage(".modal_type_image");
+imagePopup.setEventListeners();
+
+const cardsList = new Section({
+  items: initialCards,
+  renderer: (cardItem) => {
+    const card = new Card(cardItem, ".card-template");
+    const cardElement = card.generateCard();
+    cardsList.addItem(cardElement);
+  }
+},
+  grid
+);
+
+/*initialCards.forEach(data => {
+  const card = new Card(data, ".card-template");
+  grid.append(card.generateCard());
+});
+
+function addCard(cardData) {
+  const card = new Card(cardData, ".card-template");
+  grid.prepend(card.generateCard());
+  addCardForm.reset();
+}*/
 
 function submitEditProfileForm(event) {
   event.preventDefault();
@@ -65,17 +92,6 @@ editButton.addEventListener("click", () => {
   editProfileValidator.resetValidation();
   toggleModalWindow(editProfileModal);
 });
-
-initialCards.forEach(data => {
-  const card = new Card(data, ".card-template");
-  grid.append(card.generateCard());
-});
-
-function addCard(cardData) {
-  const card = new Card(cardData, ".card-template");
-  grid.prepend(card.generateCard());
-  addCardForm.reset();
-}
 
 closeButton.addEventListener("click", () => {
   toggleModalWindow(editProfileModal);
