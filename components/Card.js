@@ -1,10 +1,11 @@
-import { imageModal, toggleModalWindow } from "../utils.js";
+import { imageModal } from "../utils/utils.js";
+import Popup from "./Popup.js";
 
 const modalImage = imageModal.querySelector(".modal__image");
 const modalImageTitle = imageModal.querySelector(".modal__image-title");
 
-class Card {
-    constructor (data, templateSelector, handleCardClick) {
+export default class Card {
+    constructor ({ data, handleCardClick }, templateSelector) {
         this._link = data.link;
         this._name = data.name;
         this._templateSelector = templateSelector;
@@ -14,7 +15,6 @@ class Card {
         modalImage.src = this._link;
         modalImageTitle.textContent = this._name;
         modalImage.alt = this._name;
-        toggleModalWindow(imageModal);
 
         modalImage.addEventListener("click", () => {
             this._handleCardClick();
@@ -37,7 +37,7 @@ class Card {
 
         cardDeleteButton.addEventListener("click", () => this._deleteButton());
         cardLikeButton.addEventListener("click", () => this._likeButton());
-        cardImage.addEventListener("click", () => this._cardImagePopup());
+        cardImage.addEventListener("click", () => this._handleCardClick(this._link, this._name));
     }
 
     _getTemplate() {
@@ -60,12 +60,11 @@ class Card {
     }
 }
 
-export default Card;
 
-/*    _cardImagePopup() {
-        modalImage.src = this._link;
-        modalImageTitle.textContent = this._name;
-        modalImage.alt = this._name;
-        toggleModalWindow(imageModal);
+/*new Card({
+    data: {...},
+    handleCardClick: () => {
+        //opens img modal
     }
-*/
+
+})*/
