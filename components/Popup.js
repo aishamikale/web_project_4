@@ -1,5 +1,3 @@
-import Card from "./Card.js";
-
 export default class Popup {
     constructor(popupSelector) {
         this._popupElement = document.querySelector(popupSelector);
@@ -16,27 +14,17 @@ export default class Popup {
         document.removeEventListener("keyup", this._handleEscClose);
     }
     _handleEscClose(evt) {
-        //close popup on esc keyxc 
+        //close popup on esc key
         if(evt.key === "Escape") {
             this.close(); 
         }
     }
     setEventListeners() {
+        //close popup when clicking close button or overlay
         this._popupElement.addEventListener("click", (evt) => {
-            if(evt.target.classList.contains("modal__button") || (evt.target.closest("modal__container"))) {
+            if(evt.target.classList.contains("modal__button") || (evt.target.classList.contains("modal"))) {
                 this.close();
             }
         });
     }
 }
-
-/*this._popupElement.addEventListener("click", (evt) => {
-            if(evt.target.classList("modal__button")) {
-                this.close();
-            }
-        });*/
-
-        /*const closeButton = this._popupElement.querySelector(".modal__button");
-        closeButton.addEventListener("click", () => {
-            this.close();
-        });*/

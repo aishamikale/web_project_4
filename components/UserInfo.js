@@ -9,7 +9,6 @@ export default class UserInfo {
             name: this._userName.textContent,
             job:  this._userJob.textContent
         }
-        
     }
     setUserInfo(name, job) {
         //takes new user data and adds it on the page
@@ -17,6 +16,3 @@ export default class UserInfo {
         this._userJob.textContent = job;
     }
 }
-
-/*profileName.textContent = nameInput.value;
-profileTitle.textContent = titleInput.value;*/

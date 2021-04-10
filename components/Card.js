@@ -1,9 +1,3 @@
-import { imageModal } from "../utils/utils.js";
-import Popup from "./Popup.js";
-
-const modalImage = imageModal.querySelector(".modal__image");
-const modalImageTitle = imageModal.querySelector(".modal__image-title");
-
 export default class Card {
     constructor ({ data, handleCardClick }, templateSelector) {
         this._link = data.link;
@@ -11,16 +5,7 @@ export default class Card {
         this._templateSelector = templateSelector;
         this._handleCardClick = handleCardClick;
     }
-    _cardImagePopup() {
-        modalImage.src = this._link;
-        modalImageTitle.textContent = this._name;
-        modalImage.alt = this._name;
-
-        modalImage.addEventListener("click", () => {
-            this._handleCardClick();
-        });
-    }
-
+    
     _likeButton() {
       const cardLikeButton = this._cardElement.querySelector(".card__like-button");
       cardLikeButton.classList.toggle("card__like_button_active");
@@ -59,12 +44,3 @@ export default class Card {
         return this._cardElement;
     }
 }
-
-
-/*new Card({
-    data: {...},
-    handleCardClick: () => {
-        //opens img modal
-    }
-
-})*/
