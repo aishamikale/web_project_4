@@ -11,10 +11,18 @@ module.exports = {
     },
     mode: "development",
     devServer: {
-        contentBase: path.resolve(__dirname, './dist'), // tell the server where to serve content from in dev mode
-        compress: true, // this will speed up file loading in development mode
-        port: 8080, // will open your site at localhost:8080 (you can use another port)
-    
-        open: true // site will open automatically in the browser after executing npm run dev
+        contentBase: path.resolve(__dirname, './dist'),
+        compress: true,
+        port: 8080,
+        open: true
       },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                loader: "babel-loader",
+                exclude: "/node_modules/"
+            }
+        ]
+    }
 }
