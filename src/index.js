@@ -1,3 +1,4 @@
+import "./pages/index.css";
 import { settings } from "./utils/utils.js";
 import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidator.js";
