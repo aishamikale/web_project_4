@@ -34,7 +34,7 @@
             <div class="modal__container">
                 <form action="#" class="form form_type_edit-profile" name="profileForm">
                     <h2 class="form__heading">Edit profile</h2>
-                    <input id="profile-name" type="text" class="form__input form__input_type_name" name="name" placeholder="Name" minlength="4" maxlength="40" required/>
+                    <input id="profile-name" type="text" class="form__input form__input_type_name" name="username" placeholder="Name" minlength="4" maxlength="40" required/>
                     <span id="profile-name-error" class="modal__error"></span>
 
                     <input id="profile-title" type="text" class="form__input form__input_type_title" name="title" placeholder="Description" minlength="2" maxlength="200" required/>
@@ -59,6 +59,14 @@
                 </form>
                 <button class="modal__button" type="button" aria-label="close popup"></button>
             </div>
+        <div class="modal modal_type_delete-card">
+            <div class="modal__container">
+                <form action="#" class="form_type_delete-card" name="deleteCard">
+                    <h2 class="form__heading">Are you sure?</h2>
+                    <button class="form__button form__button-delete" type="submit">Yes</button>
+                </form>
+            </div>
+        </div>
         </div>
 
         <div class="modal modal_type_image">
@@ -81,6 +89,7 @@
                 </div>
             </li>
         </template>
+        <!--<script src="https://unpkg.com/regenerator-runtime@0.13.1/runtime.js"></script>-->
         <!--<script type="module" src="./pages/index.js"></script>-->
     </body>
 </html>
