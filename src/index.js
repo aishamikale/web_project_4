@@ -22,19 +22,26 @@ const deletePopup = document.querySelector(".modal_type_delete-card");
 const cardPopup = document.querySelector(".modal_type_add-card");
 const profilePopup = document.querySelector(".modal_type_edit-profile");
 const photoPopup = document.querySelector(".modal_type_image");
+const avatarPopup = document.querySelector(".modal_type_avatar");
 
 const usernameInput = document.querySelector(".profile__title");
 const jobInput = document.querySelector(".profile__subtitle");
+const avatarInput = document.querySelector(".profile__avatar");
 
 const templateSelector = document.querySelector(".card-template");
+
+const avatarEditButton = document.querySelector(".avatar__overlay");
  
 //validators 
 const editProfileValidator = new FormValidator(settings, document.querySelector(".form_type_edit-profile")); 
 const addCardValidator = new FormValidator(settings, document.querySelector(".form_type_add-card"));
 const deleteCardValidator = new FormValidator(settings, document.querySelector(".form_type_delete-card"));
+const avatarCardValidator = new FormValidator(settings, document.querySelector(".form_type_avatar"));
+
 editProfileValidator.enableValidation(); 
 addCardValidator.enableValidation();
 deleteCardValidator.enableValidation();
+avatarCardValidator.enableValidation();
 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-7",
@@ -51,8 +58,6 @@ deleteCardPopup.setEventListeners();
 api.getAppInfo()
   .then(([userInfo, initialCards]) => {
     const userId = userInfo._id;
-    //console.log(userId);
-    //console.log(userInfo._id);
 
     //load initial cards from the server
     const cardsList = new Section({ 
@@ -79,18 +84,35 @@ api.getAppInfo()
     });
 
     //Profile info set up via UserInfo class
-      const userData = new UserInfo(usernameInput, jobInput);
+      const userData = new UserInfo(usernameInput, jobInput, avatarInput);
       userData.setUserInfo({updatedName: userInfo.name, updatedJob: userInfo.about});
-        //avatar info will go here
+      userData.setUserAvatar({avatar: userInfo.avatar});
 
       //adds new user info based on name and title input
       const editProfilePopup = new PopupWithForm (profilePopup, (inputs) => {
         api.editProfile({name: inputs.username, about: inputs.title})
           .then(inputs => {
             userData.setUserInfo({updatedName: inputs.name, updatedJob: inputs.about})
-            //console.log(inputs.name)
-            editProfilePopup.close()            })
-      })
+            editProfilePopup.close()            
+          })
+      });
+
+      //avatar popup
+      const avatarEditPopup = new PopupWithForm(avatarPopup, (data) => {
+        api.updateAvatar(data.avatar)
+          .then((res) => {
+            avatarInput.src = res.avatar;
+            avatarEditPopup.close();
+          })
+          .catch(err => console.log(err));
+      });
+
+      avatarEditButton.addEventListener("click", () => {
+        avatarEditPopup.open();
+      });
+      avatarEditPopup.setEventListeners();
+
+
       editProfilePopup.setEventListeners();
       //get user info and display in the open form 
       editButton.addEventListener("click", () => { 
@@ -146,19 +168,6 @@ api.getAppInfo()
 })
 
 
-
-
-
-
-
-//set default user info
-/*api.getUsersInfo()
-  .then(res => {
-    userData.setUserInfo(res.name, res.about)
-    console.log("profile!!", res)
-  })*/
-
- 
 //opens popup image 
 const imagePopup = new PopupWithImage(photoPopup); 
 

@@ -23,9 +23,17 @@ export default class Card {
         this._cardElement = null;
     }
 
+       //removes delete button from cards other than the owners - not functioning
+    _deleteButton() {
+        const cardTrashButton = this._cardElement.querySelector(".card__delete-button");
+        if (this._owner !== this._userId) {
+            cardTrashButton.remove();
+            //cardTrashButton.classList.add("card__delete-button_display");
+        }
+    }
 
     //toggles like button
-    _likeButton() {
+    toggleLikeButton() {
       const cardLikeButton = this._cardElement.querySelector(".card__like-button");
       cardLikeButton.classList.toggle("card__like_button_active");
     }
@@ -54,7 +62,7 @@ export default class Card {
         const cardImage = this._cardElement.querySelector(".card__image");
 
         cardDeleteButton.addEventListener("click", () => this._handleDeleteClick(this.id()));
-        cardLikeButton.addEventListener("click", () => this._handleLikeClick(this.id()));
+        cardLikeButton.addEventListener("click", () => this._handleLikeClick(this._cardElement, this.id()));
         cardImage.addEventListener("click", () => this._handleCardClick(this._link, this._name));
     }
 
@@ -77,15 +85,8 @@ export default class Card {
 
 
         this._setEventListeners();
+        this._handleCardLikes();
+        this._deleteButton();
         return this._cardElement;
     }
 }
-
-   //removes delete button from cards other than the owners - not functioning
-    /*_deleteButton() {
-        const cardTrashButton = document.querySelector(".card__delete-button");
-        if (this._owner._id !== this._id) {
-            cardTrashButton.remove();
-            //cardTrashButton.classList.add("card__delete-button_display");
-        }
-      }*/
