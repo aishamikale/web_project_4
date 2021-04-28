@@ -17,6 +17,12 @@ class Api {
       .then(res => res.ok ? res.json() : Promise.reject("Could not return user info " + res.statusText))
       .catch(err => console.log(err))
     }
+
+    //get user info and cards from the server
+    getAppInfo() {
+      return Promise.all([this.getUsersInfo(), this.getInitialCards()])
+    }
+
     addCard({name, link}) {
       return fetch(this._baseUrl + "/cards", {
         method: "POST",
@@ -42,11 +48,28 @@ class Api {
       .catch(err => console.log(err))
     }
     removeCard(cardId) {
-      return fetch(this._baseUrl + "/cards" + cardId, {
+      return fetch(this._baseUrl + "/cards/" + cardId, {
         method: "DELETE",
         headers: this._headers,
       })
       .then(res => res.ok ? res.json() : Promise.reject("Could not delete card " + res.statusText))
+      .catch(err => console.log(err))
+    }
+    //add likes PUT
+    addLikes(cardId){
+      return fetch(this._baseUrl + "/cards/likes/" + cardId, {
+        method: "PUT",
+        headers: this._headers,
+      })
+      .then(res => res.ok ? res.json() : Promise.reject("ERROR! " + res.statusText))
+      .catch(err => console.log(err))
+    }
+    removeLike(cardId){
+      return fetch(this._baseUrl + "/cards/likes/" + cardId, {
+        method: "DELETE",
+        headers: this._headers,
+      })
+      .then(res => res.ok ? res.json() : Promise.reject("ERROR! " + res.statusText))
       .catch(err => console.log(err))
     }
 }
