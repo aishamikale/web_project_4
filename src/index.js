@@ -30,7 +30,7 @@ const avatarInput = document.querySelector(".profile__avatar");
 
 const templateSelector = document.querySelector(".card-template");
 
-const avatarEditButton = document.querySelector(".avatar__overlay");
+const avatarEditButton = document.querySelector(".profile__avatar-overlay");
  
 //validators 
 const editProfileValidator = new FormValidator(settings, document.querySelector(".form_type_edit-profile")); 
@@ -77,11 +77,6 @@ api.getAppInfo()
           addCardPopup.close();
         })
     })
-    addCardPopup.setEventListeners();
-    addButton.addEventListener("click", () => { 
-      addCardPopup.open(); 
-      addCardValidator.resetValidation(); 
-    });
 
     //Profile info set up via UserInfo class
       const userData = new UserInfo(usernameInput, jobInput, avatarInput);
@@ -107,29 +102,12 @@ api.getAppInfo()
           .catch(err => console.log(err));
       });
 
-      avatarEditButton.addEventListener("click", () => {
-        avatarEditPopup.open();
-      });
-      avatarEditPopup.setEventListeners();
-
-
-      editProfilePopup.setEventListeners();
-      //get user info and display in the open form 
-      editButton.addEventListener("click", () => { 
-        userData.getUserInfo({name:nameInput.value, job:titleInput.value});
-        const userFormData = userData.getUserInfo(); 
-        nameInput.value = userFormData.name; 
-        titleInput.value = userFormData.job; 
-        editProfilePopup.open(); 
-        editProfileValidator.resetValidation(); 
-      });
-
         //add new card functionality
         function newCard(cardItem) {
           const card = new Card({ 
             data: cardItem,  
-            handleCardClick: (data) => { 
-            imagePopup.open(data); 
+            handleCardClick: (url, caption) => { 
+            imagePopup.open(url, caption); 
             },
             //pass cardId to identify my images
             handleDeleteClick: (cardId) => {
@@ -165,13 +143,30 @@ api.getAppInfo()
         }
 
 
+        const imagePopup = new PopupWithImage(photoPopup);
+        //Event Listeners
+        imagePopup.setEventListeners();
+        avatarEditPopup.setEventListeners();
+        editProfilePopup.setEventListeners();
+        addCardPopup.setEventListeners();
+
+        avatarEditButton.addEventListener("click", () => {
+          avatarEditPopup.open();
+        });
+  
+        //get user info and display in the open form 
+        editButton.addEventListener("click", () => { 
+          userData.getUserInfo({name:nameInput.value, job:titleInput.value});
+          const userFormData = userData.getUserInfo(); 
+          nameInput.value = userFormData.name; 
+          titleInput.value = userFormData.job; 
+          editProfilePopup.open(); 
+          editProfileValidator.resetValidation(); 
+        });
+
+        addButton.addEventListener("click", () => { 
+          addCardPopup.open(); 
+          addCardValidator.resetValidation(); 
+        });
+
 })
-
-
-//opens popup image 
-const imagePopup = new PopupWithImage(photoPopup); 
-
-//setEventListeners 
-// editProfilePopup.setEventListeners(); 
-//addCardPopup.setEventListeners();
-imagePopup.setEventListeners();

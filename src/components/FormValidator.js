@@ -1,4 +1,4 @@
-export default class FormValidator {
+    export default class FormValidator {
     constructor(settings, formElement) {
         this._settings = settings;
         this._formElement = formElement;
@@ -51,6 +51,14 @@ export default class FormValidator {
                 this._toggleButtonState();
             });
         });
+
+        this._formElement.addEventListener("reset", () => {
+            this._inputs.forEach((input) => {
+                this._hideErrorMessage(input);
+            })
+            this._button.disabled = true;
+            this._button.classList.add(this._settings.inactiveButtonClass);
+        })
     }
 
     resetValidation() {
