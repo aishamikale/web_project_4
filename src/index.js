@@ -97,7 +97,7 @@ api.getAppInfo()
           })
       });
 
-      //avatar popup
+      //avatar
       const avatarEditPopup = new PopupWithForm(avatarPopup, (data) => {
         api.updateAvatar(data.avatar)
           .then((res) => {
