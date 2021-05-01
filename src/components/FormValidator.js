@@ -2,7 +2,6 @@
     constructor(settings, formElement) {
         this._settings = settings;
         this._formElement = formElement;
-        this._inputs = settings.inputs;
         this._button = settings.button;
     }
     _showErrorMessage(input) {
@@ -15,7 +14,7 @@
     }
 
     _hideErrorMessage(input) {
-        const error = document.querySelector("#" + input.id + "-error");
+        const error = this._formElement.querySelector("#" + input.id + "-error");
         error.textContent = "";
     
         error.classList.remove(this._settings.errorClass);
@@ -60,14 +59,6 @@
             this._button.classList.add(this._settings.inactiveButtonClass);
         })
     }
-
-    resetValidation() {
-        this._inputs.forEach((inputElement) => {
-          this._hideErrorMessage(inputElement);
-        });
-  
-        this._toggleButtonState();
-      }
 
     enableValidation () {
         this._formElement.addEventListener("submit", (event) => {

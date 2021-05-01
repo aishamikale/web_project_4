@@ -1,22 +1,19 @@
 import 'regenerator-runtime/runtime';
-import "./pages/index.css"; 
-import { settings } from "./utils/utils.js"; 
-import Card from "./components/Card.js"; 
-import FormValidator from "./components/FormValidator.js"; 
-import PopupWithImage from "./components/PopupWithImage.js"; 
-import PopupWithForm from "./components/PopupWithForm.js";
-import Section from "./components/Section.js"; 
-import UserInfo from "./components/UserInfo.js"; 
-import Api from "./components/Api.js";
+import "../pages/index.css";
+import { settings } from "../utils/utils.js"; 
+import Card from "../components/Card.js"; 
+import FormValidator from "../components/FormValidator.js"; 
+import PopupWithImage from "../components/PopupWithImage.js"; 
+import PopupWithForm from "../components/PopupWithForm.js";
+import Section from "../components/Section.js"; 
+import UserInfo from "../components/UserInfo.js"; 
+import Api from "../components/Api.js";
  
-import { 
+import {
   editButton, 
   addButton, 
   nameInput, 
-  titleInput, 
-  cardTitleInput, 
-  cardUrlInput } from "./utils/constants.js";
-import Popup from './components/Popup';
+  titleInput } from "../utils/constants.js";
 
 const deletePopup = document.querySelector(".modal_type_delete-card");
 const cardPopup = document.querySelector(".modal_type_add-card");
@@ -28,19 +25,15 @@ const usernameInput = document.querySelector(".profile__title");
 const jobInput = document.querySelector(".profile__subtitle");
 const avatarInput = document.querySelector(".profile__avatar");
 
-const templateSelector = document.querySelector(".card-template");
-
 const avatarEditButton = document.querySelector(".profile__avatar-overlay");
  
 //validators 
 const editProfileValidator = new FormValidator(settings, document.querySelector(".form_type_edit-profile")); 
 const addCardValidator = new FormValidator(settings, document.querySelector(".form_type_add-card"));
-const deleteCardValidator = new FormValidator(settings, document.querySelector(".form_type_delete-card"));
 const avatarCardValidator = new FormValidator(settings, document.querySelector(".form_type_avatar"));
 
 editProfileValidator.enableValidation(); 
 addCardValidator.enableValidation();
-deleteCardValidator.enableValidation();
 avatarCardValidator.enableValidation();
 
 const api = new Api({
@@ -63,7 +56,7 @@ api.getAppInfo()
     const cardsList = new Section({ 
       items: initialCards,
       renderer: (cardInfo) => { 
-        cardsList.addItem(newCard(cardInfo)); 
+        cardsList.addItem(createNewCard(cardInfo)); 
       }, 
     }, ".cards__grid" 
     );    
@@ -73,9 +66,10 @@ api.getAppInfo()
     const addCardPopup = new PopupWithForm(cardPopup, (inputValues) => {
       api.addCard({name: inputValues.place, link: inputValues.website})
         .then(inputValues => {
-          cardsList.addItem(newCard(inputValues))
+          cardsList.addItem(createNewCard(inputValues))
           addCardPopup.close();
         })
+        .catch(err => console.log(err))
     })
 
     //Profile info set up via UserInfo class
@@ -86,24 +80,26 @@ api.getAppInfo()
       //adds new user info based on name and title input
       const editProfilePopup = new PopupWithForm (profilePopup, (inputs) => {
         api.editProfile({name: inputs.username, about: inputs.title})
-          .then(inputs => {
-            userData.setUserInfo({updatedName: inputs.name, updatedJob: inputs.about})
+          .then(userInputs => {
+            userData.setUserInfo({updatedName: userInputs.name, updatedJob: userInputs.about})
             editProfilePopup.close()            
           })
+          .catch(err => console.log(err))
       });
 
       //avatar
       const avatarEditPopup = new PopupWithForm(avatarPopup, (data) => {
         api.updateAvatar(data.avatar)
           .then((res) => {
-            avatarInput.src = res.avatar;
+            userData.setUserAvatar({avatar: res.avatar});
+            //avatarInput.src = res.avatar;
             avatarEditPopup.close();
           })
           .catch(err => console.log(err));
       });
 
         //add new card functionality
-        function newCard(cardItem) {
+        function createNewCard(cardItem) {
           const card = new Card({ 
             data: cardItem,  
             handleCardClick: (url, caption) => { 
@@ -112,7 +108,7 @@ api.getAppInfo()
             //pass cardId to identify my images
             handleDeleteClick: (cardId) => {
               deleteCardPopup.open(cardId);
-              deleteCardPopup.submitFormAction(() => {
+              deleteCardPopup.setSubmitFormAction(() => {
                 api.removeCard(cardId)
                 .then(() => {
                   card.deleteCard();
@@ -121,24 +117,24 @@ api.getAppInfo()
                 .catch(err => console.log(err))
               })
             },
-            handleLikeClick: (cardElement, cardId) => {
-              if(cardElement.classList.contains(".card__like_button_active")) {
+            handleLikeClick: (likeButton, cardId) => {
+              if(likeButton.classList.contains("card__like_button_active")) {
                 api.removeLike(cardId)
                   .then(res => {
                     card.displayTotalLikes(res.likes.length);
-                    card.toggleLikeButton();
+                    card.toggleLikeButton(likeButton);
                   })
                   .catch(err => console.log(err))
               } else {
                 api.addLikes(cardId)
                   .then(res => {
                     card.displayTotalLikes(res.likes.length);
-                    card.toggleLikeButton();
+                    card.toggleLikeButton(likeButton);
                   })
                   .catch(err => console.log(err))
               }
             }
-          }, userId, templateSelector) 
+          }, userId, ".card-template") 
           return card.generateCard(); 
         }
 
@@ -156,17 +152,15 @@ api.getAppInfo()
   
         //get user info and display in the open form 
         editButton.addEventListener("click", () => { 
-          userData.getUserInfo({name:nameInput.value, job:titleInput.value});
           const userFormData = userData.getUserInfo(); 
           nameInput.value = userFormData.name; 
           titleInput.value = userFormData.job; 
           editProfilePopup.open(); 
-          editProfileValidator.resetValidation(); 
         });
 
         addButton.addEventListener("click", () => { 
           addCardPopup.open(); 
-          addCardValidator.resetValidation(); 
         });
 
 })
+.catch(err => console.log(err))

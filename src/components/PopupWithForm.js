@@ -5,11 +5,12 @@ export default class PopupWithForm extends Popup {
         super(popupSelector);
         this._handleFormSubmit = handleFormSubmit;
         this._form = this._popupElement.querySelector(".form");
-    }
-    _getInputValues() {
-        //collects data from all input fields
+        this._saveButton = this._popupElement.querySelector(".form__button");
         this._inputList = this._popupElement.querySelectorAll(".form__input");
-        //<input id="profile-name" type="text" class="form__input form__input_type_name" name="name"
+    }
+
+    //collects data from all input fields
+    _getInputValues() {
         this._formValues = {};
 
         this._inputList.forEach(input => {
@@ -21,17 +22,15 @@ export default class PopupWithForm extends Popup {
 
     //submit button shows saving... while processing
     processingData() {
-        const saveButton = document.querySelector(".form__button");
-        saveButton.textContent = "Saving..."
+        this._saveButton.textContent = "Saving..."
     }
 
     stopProcessingData() {
-        const saveButton = document.querySelector(".form__button");
-        saveButton.textContent = "Save";
+        this._saveButton.textContent = "Save";
     }
 
+    //add click to close icon & submit to submit button
     setEventListeners() {
-        //add click to close icon & submit to submit button
         super.setEventListeners();
         this._form.addEventListener("submit", (evt) => {
             this.processingData();
@@ -40,8 +39,8 @@ export default class PopupWithForm extends Popup {
         });
     }
 
-        //submit form
-    submitFormAction(action) {
+    //submit form
+    setSubmitFormAction(action) {
         this._handleFormSubmit = action;
     }
 

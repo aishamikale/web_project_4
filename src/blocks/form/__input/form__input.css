@@ -13,10 +13,6 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.form__input:invalid {
-    border-bottom: 1px solid #ff0000;
-}
-
 @media screen and (max-width: 958px) {
     .form__input {
         width: 330px;

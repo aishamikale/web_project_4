@@ -3,19 +3,22 @@ class Api {
       this._baseUrl = baseUrl;
       this._headers = headers;
     }
+
+    _checkResponse(res) {
+      return res.ok ? res.json() : Promise.reject("Error!" + res.statusText);
+    }
+
     getInitialCards() {
       return fetch(this._baseUrl + "/cards", {
         headers: this._headers
       })
-      .then(res => res.ok ? res.json() : Promise.reject("Error!" + res.statusText))
-      .catch(err => console.log(err))
+      .then(this._checkResponse)
   }
     getUsersInfo() {
       return fetch(`${this._baseUrl}/users/me`, {
         headers: this._headers
       })
-      .then(res => res.ok ? res.json() : Promise.reject("Could not return user info " + res.statusText))
-      .catch(err => console.log(err))
+      .then(this._checkResponse)
     }
 
     //get user info and cards from the server
@@ -32,8 +35,7 @@ class Api {
           link
         })
       })
-      .then(res => res.ok ? res.json() : Promise.reject("Could not add card " + res.statusText))
-      .catch(err => console.log(err))
+      .then(this._checkResponse)
     }
     editProfile({name, about}) {
       return fetch(this._baseUrl + "/users/me", {
@@ -44,16 +46,14 @@ class Api {
           about
         })
       })
-      .then(res => res.ok ? res.json() : Promise.reject("Could not update user information " + res.statusText))
-      .catch(err => console.log(err))
+      .then(this._checkResponse)
     }
     removeCard(cardId) {
       return fetch(this._baseUrl + "/cards/" + cardId, {
         method: "DELETE",
         headers: this._headers,
       })
-      .then(res => res.ok ? res.json() : Promise.reject("Could not delete card " + res.statusText))
-      .catch(err => console.log(err))
+      .then(this._checkResponse)
     }
     //add likes PUT
     addLikes(cardId){
@@ -61,16 +61,14 @@ class Api {
         method: "PUT",
         headers: this._headers,
       })
-      .then(res => res.ok ? res.json() : Promise.reject("ERROR! " + res.statusText))
-      .catch(err => console.log(err))
+      .then(this._checkResponse)
     }
     removeLike(cardId){
       return fetch(this._baseUrl + "/cards/likes/" + cardId, {
         method: "DELETE",
         headers: this._headers,
       })
-      .then(res => res.ok ? res.json() : Promise.reject("ERROR! " + res.statusText))
-      .catch(err => console.log(err))
+      .then(this._checkResponse)
     }
     updateAvatar(avatar) {
       return fetch(this._baseUrl + "/users/me/avatar", {
@@ -80,8 +78,7 @@ class Api {
           avatar
         })
       })
-      .then(res => res.ok ? res.json() : Promise.reject("ERROR! " + res.statusText))
-      .catch(err => console.log(err))
+      .then(this._checkResponse)
     }
 }
   
